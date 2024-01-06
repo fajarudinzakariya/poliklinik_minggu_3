@@ -276,12 +276,10 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Form edit data obat disini -->
-                                                    <form action="pages/obat/hapusObat.php" method="post">
+                                                    <form action="pages/jadwalPeriksa/hapusJadwalPeriksa.php" method="post">
                                                         <input type="hidden" class="form-control" id="id" name="id"
                                                             value="<?php echo $data['id'] ?>" required>
-                                                        <p>Apakah anda yakin akan menghapus data <span
-                                                                class="font-weight-bold"><?php echo $data['nama_obat'] ?></span>
-                                                        </p>
+                                                        <p>Apakah anda yakin akan menghapus data</p>                                                        </p>
                                                         <button type="submit" class="btn btn-danger">Hapus</button>
                                                     </form>
                                                 </div>

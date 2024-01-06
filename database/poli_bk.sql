@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2024 at 08:15 AM
+-- Generation Time: Jan 06, 2024 at 08:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -107,9 +107,12 @@ CREATE TABLE `jadwal_periksa` (
 --
 
 INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`, `status`) VALUES
-(1, 1, 'Rabu', '15:00:00', '16:00:00', 1),
+(1, 1, 'Senin', '15:00:00', '16:00:00', 0),
 (2, 2, 'Kamis', '12:00:00', '14:00:00', 0),
-(3, 4, 'Senin', '13:00:00', '14:00:00', 1);
+(3, 4, 'Senin', '13:00:00', '14:00:00', 1),
+(6, 1, 'Jumat', '03:46:00', '16:41:00', 1),
+(7, 1, 'Selasa', '12:42:00', '14:45:00', 1),
+(8, 1, 'Rabu', '20:12:00', '22:43:00', 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +132,6 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id`, `nama_obat`, `kemasan`, `harga`) VALUES
-(1, 'Albendasol suspensi 200 mg/5 ml', 'Ktk 10 btl @ 10 ml', 6000),
 (2, 'Panadol Merah', 'Tablet', 8000),
 (3, 'Alprazolam tablet 1 mg', 'ktk 10 x 10 tablet', 118000),
 (4, 'Amilorida tablet 5 mg', 'ktk 10 x 10 table', 12000);
@@ -290,7 +292,7 @@ ALTER TABLE `dokter`
 -- AUTO_INCREMENT for table `jadwal_periksa`
 --
 ALTER TABLE `jadwal_periksa`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `obat`
