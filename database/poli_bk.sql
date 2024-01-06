@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 02:11 PM
+-- Generation Time: Jan 06, 2024 at 08:15 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -36,6 +36,13 @@ CREATE TABLE `daftar_poli` (
   `status_periksa` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `daftar_poli`
+--
+
+INSERT INTO `daftar_poli` (`id`, `id_pasien`, `id_jadwal`, `keluhan`, `no_antrian`, `status_periksa`) VALUES
+(1, 1, 1, 'kegemukan ', 1, '1');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,14 @@ CREATE TABLE `detail_periksa` (
   `id_periksa` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `detail_periksa`
+--
+
+INSERT INTO `detail_periksa` (`id`, `id_periksa`, `id_obat`) VALUES
+(1, 1, 2),
+(2, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -83,17 +98,18 @@ CREATE TABLE `jadwal_periksa` (
   `id_dokter` int(11) NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu') NOT NULL,
   `jam_mulai` time NOT NULL,
-  `jam_selesai` time NOT NULL
+  `jam_selesai` time NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jadwal_periksa`
 --
 
-INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`) VALUES
-(1, 1, 'Rabu', '15:00:00', '16:00:00'),
-(2, 2, 'Kamis', '12:00:00', '14:00:00'),
-(3, 4, 'Senin', '13:00:00', '14:00:00');
+INSERT INTO `jadwal_periksa` (`id`, `id_dokter`, `hari`, `jam_mulai`, `jam_selesai`, `status`) VALUES
+(1, 1, 'Rabu', '15:00:00', '16:00:00', 1),
+(2, 2, 'Kamis', '12:00:00', '14:00:00', 0),
+(3, 4, 'Senin', '13:00:00', '14:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -156,6 +172,13 @@ CREATE TABLE `periksa` (
   `catatan` text NOT NULL,
   `biaya_periksa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `periksa`
+--
+
+INSERT INTO `periksa` (`id`, `id_daftar_poli`, `tgl_periksa`, `catatan`, `biaya_periksa`) VALUES
+(1, 1, '2024-01-05 20:36:00', 'diet', 150000);
 
 -- --------------------------------------------------------
 
@@ -249,13 +272,13 @@ ALTER TABLE `poli`
 -- AUTO_INCREMENT for table `daftar_poli`
 --
 ALTER TABLE `daftar_poli`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `detail_periksa`
 --
 ALTER TABLE `detail_periksa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `dokter`
@@ -285,7 +308,7 @@ ALTER TABLE `pasien`
 -- AUTO_INCREMENT for table `periksa`
 --
 ALTER TABLE `periksa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `poli`
