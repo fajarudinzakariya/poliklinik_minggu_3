@@ -69,6 +69,13 @@
                                                     <input type="time" class="form-control" id="jamSelesai"
                                                         name="jamSelesai" required>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="status">Status</label>
+                                                    <select class="form-control" id="status" name="status" required>
+                                                        <option value="1">Aktif</option>
+                                                        <option value="0">Tidak Aktif</option>
+                                                    </select>
+                                                </div>
                                                 <button type="submit" class="btn btn-primary">Tambah</button>
                                             </form>
                                         </div>
@@ -103,13 +110,14 @@
                                                             <td>Hari</td>
                                                             <td>Jam Mulai</td>
                                                             <td>Jam Selesai</td>
+                                                            <td>Status</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
                                                                         $nomor = 1;
                                                                         require 'config/koneksi.php';
-                                                                        $ambilDataJadwal = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli = poli.id WHERE id_poli = '$id_poli'";
+                                                                        $ambilDataJadwal = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, jadwal_periksa.status, dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli = poli.id WHERE id_poli = '$id_poli'";
 
                                                                         $resultss = mysqli_query($mysqli, $ambilDataJadwal);
                                                                         while ($a = mysqli_fetch_assoc($resultss)) {
@@ -121,6 +129,12 @@
                                                             <td><?php echo $a['hari'] ?></td>
                                                             <td><?php echo $a['jam_mulai'] ?></td>
                                                             <td><?php echo $a['jam_selesai'] ?></td>
+                                                            <td><?php if ($a['status'] == 1) {
+                                                                            echo 'Aktif';
+                                                                        } elseif ($a['status'] == 0) {
+                                                                            echo 'Tidak Aktif';
+                                                                        }?>
+                                                            </td>
                                                         </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -144,6 +158,7 @@
                                     <th>Hari</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -153,7 +168,7 @@
                                 <?php
                                 $no = 1;
                             require 'config/koneksi.php';
-                            $query = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli = poli.id WHERE id_poli = '$id_poli' AND dokter.id = '$id_dokter'";
+                            $query = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, jadwal_periksa.status, dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli = poli.id WHERE id_poli = '$id_poli' AND dokter.id = '$id_dokter'";
                             $result = mysqli_query($mysqli, $query);
 
                             while ($data = mysqli_fetch_assoc($result)) {
@@ -165,6 +180,12 @@
                                     <td><?php echo $data['hari'] ?></td>
                                     <td><?php echo $data['jam_mulai'] ?></td>
                                     <td><?php echo $data['jam_selesai'] ?></td>
+                                    <td><?php if ($data['status'] == 1) {
+                                                    echo 'Aktif';
+                                                } elseif ($data['status'] == 0) {
+                                                    echo 'Tidak Aktif';
+                                                }?>
+                                    </td>
                                     <td>
                                         <?php
                                             require 'config/koneksi.php';
@@ -227,6 +248,13 @@
                                                             <input type="time" class="form-control" id="jamSelesai"
                                                                 name="jamSelesai" required
                                                                 value="<?= $data['jam_selesai'] ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="status">Status</label>
+                                                            <select class="form-control" id="status" name="status" required>
+                                                                <option value="1">Aktif</option>
+                                                                <option value="0">Tidak Aktif</option>
+                                                            </select>
                                                         </div>
                                                         <button type="submit" class="btn btn-success">Simpan</button>
                                                     </form>

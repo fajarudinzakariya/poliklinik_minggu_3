@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hari = $_POST["hari"];
     $jamMulai = $_POST["jamMulai"];
     $jamSelesai = $_POST["jamSelesai"];
+    $status = $_POST["status"];
 
     $queryOverlap = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id 
     INNER JOIN poli ON dokter.id_poli = poli.id WHERE id_poli = '$idPoli' 
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
         // Query untuk menambahkan data obat ke dalam tabel
-        $query = "UPDATE jadwal_periksa SET hari = '$hari', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai' WHERE id = '$id'";
+        $query = "UPDATE jadwal_periksa SET hari = '$hari', jam_mulai = '$jamMulai', jam_selesai = '$jamSelesai', status = '$status' WHERE id = '$id'";
         
 
         // if ($koneksi->query($query) === TRUE) {
